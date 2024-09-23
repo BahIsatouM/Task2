@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Booking - Online Ticket Booking</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    header {
+        background: #333;
+        color: #fff;
+        padding: 10px 0;
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+    }
+    main {
+        padding: 20px;
+        max-width: 600px;
+        margin: auto;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        display: block;
+        margin-bottom: 5px;
+    }
+    input, select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .button {
+        background: #007BFF;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    footer {
+        background: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/login">Login</a>
+    <a href="/signup">Signup</a>
+    <a href="/concerts">Concerts</a>
+    <a href="/bookings">My Bookings</a>
+    <a href="/admin">Admin Dashboard</a>
+  </nav>
+</header>
+
+<main>
+  <h1>Edit Booking</h1>
+  <form th:action="@{/admin/bookings/editagain/{id}(id=${booking.id})}" method="post">
+    <div>
+      <label for="id">Booking ID</label>
+      <input type="text" id="id" name="id" th:value="${booking.id}" readonly>
+    </div>
+    <div class="form-group">
+      <label for="status">Status:</label>
+      <select id="status" name="status" required>
+        <option value="PENDING" th:selected="${booking.status == 'PENDING'}">Pending</option>
+        <option value="APPROVED" th:selected="${booking.status == 'APPROVED'}">Approved</option>
+        <option value="REJECTED" th:selected="${booking.status == 'REJECTED'}">Rejected</option>
+      </select>
+    </div>
+    <button type="submit" class="button">Update Booking</button>
+  </form>
+</main>
+
+<footer>
+  <p>&copy; 2024 Online Ticket Booking. Your Gateway to Concerts.</p>
+</footer>
+</body>
+</html>

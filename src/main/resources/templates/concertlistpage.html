@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concert List - Online Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        main {
+            padding: 20px;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 15px;
+        }
+        a.button {
+            background: #007BFF;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <a href="/">Home</a>
+        <a href="/login">Login</a>
+        <a href="/signup">Signup</a>
+        <a href="/concerts">Concerts</a>
+        <a href="/bookings">My Bookings</a>
+        <a href="/admin">Admin Dashboard</a>
+    </nav>
+</header>
+<!--<main>-->
+<!--    <h1>Available Concerts</h1>-->
+<!--    <ul>-->
+<!--        <li th:each="concert : ${concerts}">-->
+<!--            <a th:href="@{/user/concert/{id}(id=${concert.id})}" th:text="${concert.name}" class="button"></a>-->
+<!--        </li>-->
+<!--    </ul>-->
+<!--</main>-->
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <!--            <th>Inspector</th>-->
+        <th>Concert</th>
+
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="conc : ${concerts}">
+        <!--            <td th:text="${inspection.inspector.username}"></td>-->
+        <td th:text="${conc.name}"></td>
+
+        <td>
+            <a th:href="@{/user/concert/{id}(id=${conc.id})}" class="btn btn-info">Details</a>
+
+        </td>
+    </tr>
+    </tbody>
+</table>
+<footer>
+    <p>&copy; 2024 Online Ticket Booking. All rights reserved.</p>
+</footer>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Online Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        main {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        .button {
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/signup}">Signup</a>
+        <a th:href="@{/user/concerts}">Concerts</a>
+        <a th:href="@{/user/my-bookings}">My Bookings</a>
+        <a th:href="@{/admin}">Admin Dashboard</a>
+    </nav>
+</header>
+<main>
+    <h1>Admin Dashboard</h1>
+    <a th:href="@{/user/concerts}" class="button">View Bookings</a>
+    <a th:href="@{/bookings/all}" class="button">Manage Concerts</a>
+</main>
+<footer>
+    <p>&copy; 2024 Online Ticket Booking. Your Gateway to Concerts.</p>
+</footer>
+</body>
+</html>

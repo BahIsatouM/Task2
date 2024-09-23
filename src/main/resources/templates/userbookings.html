@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings - Online Ticket Booking</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+    header {
+        background: #333;
+        color: #fff;
+        padding: 10px 0;
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+    }
+    main {
+        padding: 20px;
+    }
+    .booking-card {
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-bottom: 15px;
+        padding: 15px;
+    }
+    .booking-card h2 {
+        margin-top: 0;
+    }
+    .button {
+        background: #007BFF;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        text-decoration: none;
+        border-radius: 5px;
+    }
+    footer {
+        background: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <a th:href="@{/}">Home</a>
+    <a th:href="@{/login}">Login</a>
+    <a th:href="@{/signup}">Signup</a>
+    <a th:href="@{/concerts}">Concerts</a>
+    <a th:href="@{/user/bookings/all}">My Bookings</a>
+    <a th:href="@{/admin/dashboard}">Admin Dashboard</a>
+  </nav>
+</header>
+<main>
+  <h1>My Bookings</h1>
+  <div th:each="booking : ${bookings}" class="booking-card">
+    <h2 th:text="${booking.concertTitle}">Concert Title</h2>
+    <p>Status: <span th:text="${booking.status}">Pending</span></p>
+    <p>Date and Time: <span th:text="${booking.dateTime}">YYYY-MM-DD HH:MM</span></p>
+    <a th:href="@{/user/bookings/edit/{id}(id=${booking.id})}" class="button">Edit Booking</a>
+    <a th:href="@{/user/bookings/delete/{id}(id=${booking.id})}" class="button">Cancel Booking</a>
+  </div>
+</main>
+<footer>
+  <p>&copy; 2024 Online Ticket Booking. Your Gateway to Concerts.</p>
+</footer>
+</body>
+</html>

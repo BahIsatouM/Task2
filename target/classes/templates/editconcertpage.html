@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Concert - Online Ticket Booking</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background: #333;
+            color: #fff;
+            padding: 10px 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+        }
+        main {
+            padding: 20px;
+            max-width: 600px;
+            margin: auto;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, textarea, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .button {
+            background: #007BFF;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <a th:href="@{/}">Home</a>
+        <a th:href="@{/login}">Login</a>
+        <a th:href="@{/signup}">Signup</a>
+        <a th:href="@{/user/concerts}">Concerts</a>
+        <a th:href="@{/user/my-bookings}">My Bookings</a>
+        <a th:href="@{/admin}">Admin Dashboard</a>
+    </nav>
+</header>
+<main>
+    <h1>Edit Concert</h1>
+    <form th:action="@{/admin/concerts/edit/{id}(id=${concert.id})}" method="post">
+        <div class="form-group">
+            <label for="title">Concert Title:</label>
+            <input type="text" id="title" name="title" th:value="${concert.title}" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" th:value="${concert.location}" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Date and Time:</label>
+            <input type="datetime-local" id="date" name="date" th:value="${#dates.format(concert.dateTime, 'yyyy-MM-dd\'T\'HH:mm')}" required>
+        </div>
+        <button type="submit" class="button">Update Concert</button>
+    </form>
+</main>
+<footer>
+    <p>&copy; 2024 Online Ticket Booking. All rights reserved.</p>
+</footer>
+</body>
+</html>

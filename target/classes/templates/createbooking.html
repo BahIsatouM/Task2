@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Booking - Online Ticket Booking</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+    }
+
+    header {
+        background: #333;
+        color: #fff;
+        padding: 10px 0;
+    }
+    nav {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+    nav a {
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+    }
+    main {
+        padding: 20px;
+        text-align: center;
+    }
+    .button {
+        background: #007BFF;
+        color: #fff;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+    }
+    footer {
+        background: #333;
+        color: #fff;
+        text-align: center;
+        padding: 10px 0;
+    }
+    form {
+        max-width: 500px;
+        margin: auto;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+    }
+    form div {
+        margin-bottom: 15px;
+        text-align: left;
+    }
+    form label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    form input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <a href="/">Home</a>
+    <a href="/login">Login</a>
+    <a href="/signup">Signup</a>
+    <a href="/concerts">Concerts</a>
+    <a href="/bookings">My Bookings</a>
+    <a href="/admin">Admin Dashboard</a>
+  </nav>
+</header>
+<main>
+  <h1>Create Booking for <span th:text="${concert.name}">Concert Name</span></h1>
+  <form th:action="@{/bookings/create/{concertId}(concertId=${concert.id})}" method="post">
+    <div>
+      <label for="username">User</label>
+      <input type="text" id="username" name="username" th:value="${#authentication.name}" readonly>
+    </div>
+    <div>
+      <label for="concert">Concert</label>
+      <input type="text" id="concert" name="concert" th:value="${concert.name}" readonly>
+    </div>
+    <div>
+      <label for="status">Booking Status</label>
+      <input type="text" id="status" name="status" value="PENDING" readonly>
+    </div>
+    <button type="submit" class="button">Confirm Booking</button>
+  </form>
+</main>
+<footer>
+  <p>&copy; 2024 Online Ticket Booking. All rights reserved.</p>
+</footer>
+</body>
+</html>
